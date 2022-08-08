@@ -1,5 +1,6 @@
 import 'package:cogxrlabs_task/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -88,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
-                        textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
@@ -111,16 +111,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
-                        textAlign: TextAlign.center,
                         style: const TextStyle(
                             fontSize: 18,
                             color: Colors.black,
                             fontWeight: FontWeight.bold),
                         controller: phoneNumberController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: <TextInputFormatter>[
+                          FilteringTextInputFormatter.digitsOnly
+                        ],
+                        maxLength: 10,
                         cursorColor: Colors.redAccent,
                         decoration: const InputDecoration(
                           isCollapsed: true,
                           isDense: true,
+                          counterText: "",
                           hintText: 'Enter Your Phone Number',
                           hintStyle: TextStyle(fontSize: 18),
                           contentPadding: EdgeInsets.all(20),
@@ -134,22 +139,35 @@ class _HomeScreenState extends State<HomeScreen> {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: TextField(
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        controller: dobController,
-                        cursorColor: Colors.redAccent,
-                        decoration: const InputDecoration(
-                          isCollapsed: true,
-                          isDense: true,
-                          hintText: 'Enter Your Date of Birth',
-                          hintStyle: TextStyle(fontSize: 18),
-                          contentPadding: EdgeInsets.all(20),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold),
+                          controller: dobController,
+                          cursorColor: Colors.redAccent,
+                          decoration: const InputDecoration(
+                            isCollapsed: true,
+                            isDense: true,
+                            hintText: 'Enter Your Date of Birth',
+                            hintStyle: TextStyle(fontSize: 18),
+                            contentPadding: EdgeInsets.all(20),
+                            border: OutlineInputBorder(),
+                          ),
+                          readOnly: true,
+                          onTap: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                                context: context,
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime.now());
+                            if (pickedDate != null) {
+                              String formattedDate =
+                                  DateFormat('dd/MM/yyyy').format(pickedDate);
+                              setState(() {
+                                dobController.text = formattedDate;
+                              });
+                            }
+                          }),
                     ),
                   ],
                 )
