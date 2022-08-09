@@ -1,3 +1,4 @@
+import 'package:cogxrlabs_task/screens/camera_screen.dart';
 import 'package:cogxrlabs_task/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -168,8 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           Expanded(child: Container()),
-          const CustomButton(
-            color: Colors.brown,
+          CustomButton(
+            onTap: () => Get.to(() => const CameraScreen()),
+            color: Colors.blueGrey,
             height: 60,
             text: "Next",
             icon: Icons.arrow_forward,
