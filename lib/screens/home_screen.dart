@@ -60,122 +60,122 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      body: Stack(children: [
-        Positioned(
-          top: 40,
-          left: 0,
-          right: 0,
-          child: Container(
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      "Enter your details 🚀",
-                      style:
-                          TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Column(
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        controller: nameController,
-                        cursorColor: Colors.redAccent,
-                        decoration: const InputDecoration(
-                          isCollapsed: true,
-                          isDense: true,
-                          hintText: 'Enter Your Name',
-                          hintStyle: TextStyle(fontSize: 18),
-                          contentPadding: EdgeInsets.all(20),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
-                        controller: phoneNumberController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: <TextInputFormatter>[
-                          FilteringTextInputFormatter.digitsOnly
-                        ],
-                        maxLength: 10,
-                        cursorColor: Colors.redAccent,
-                        decoration: const InputDecoration(
-                          isCollapsed: true,
-                          isDense: true,
-                          counterText: "",
-                          hintText: 'Enter Your Phone Number',
-                          hintStyle: TextStyle(fontSize: 18),
-                          contentPadding: EdgeInsets.all(20),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextField(
-                          style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                          controller: dobController,
-                          cursorColor: Colors.redAccent,
-                          decoration: const InputDecoration(
-                            isCollapsed: true,
-                            isDense: true,
-                            hintText: 'Enter Your Date of Birth',
-                            hintStyle: TextStyle(fontSize: 18),
-                            contentPadding: EdgeInsets.all(20),
-                            border: OutlineInputBorder(),
-                          ),
-                          readOnly: true,
-                          onTap: () async {
-                            DateTime? pickedDate = await showDatePicker(
-                                context: context,
-                                initialDate: DateTime.now(),
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime.now());
-                            if (pickedDate != null) {
-                              String formattedDate =
-                                  DateFormat('dd/MM/yyyy').format(pickedDate);
-                              setState(() {
-                                dobController.text = formattedDate;
-                              });
-                            }
-                          }),
-                    ),
-                  ],
-                )
-              ],
-            ),
+      body: Column(
+        children: [
+          const SizedBox(
+            height: 50,
           ),
-        )
-      ]),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text(
+                "Enter your details 🚀",
+                style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          Column(
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  controller: nameController,
+                  cursorColor: Colors.redAccent,
+                  decoration: const InputDecoration(
+                    isCollapsed: true,
+                    isDense: true,
+                    hintText: 'Enter Your Name',
+                    hintStyle: TextStyle(fontSize: 18),
+                    contentPadding: EdgeInsets.all(20),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                  style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold),
+                  controller: phoneNumberController,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  maxLength: 10,
+                  cursorColor: Colors.redAccent,
+                  decoration: const InputDecoration(
+                    isCollapsed: true,
+                    isDense: true,
+                    counterText: "",
+                    hintText: 'Enter Your Phone Number',
+                    hintStyle: TextStyle(fontSize: 18),
+                    contentPadding: EdgeInsets.all(20),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: TextField(
+                    style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
+                    controller: dobController,
+                    cursorColor: Colors.redAccent,
+                    decoration: const InputDecoration(
+                      isCollapsed: true,
+                      isDense: true,
+                      hintText: 'Enter Your Date of Birth',
+                      hintStyle: TextStyle(fontSize: 18),
+                      contentPadding: EdgeInsets.all(20),
+                      border: OutlineInputBorder(),
+                    ),
+                    readOnly: true,
+                    onTap: () async {
+                      DateTime? pickedDate = await showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(1900),
+                          lastDate: DateTime.now());
+                      if (pickedDate != null) {
+                        String formattedDate =
+                            DateFormat('dd/MM/yyyy').format(pickedDate);
+                        setState(() {
+                          dobController.text = formattedDate;
+                        });
+                      }
+                    }),
+              ),
+            ],
+          ),
+          Expanded(child: Container()),
+          const CustomButton(
+            color: Colors.brown,
+            height: 60,
+            text: "Next",
+            icon: Icons.arrow_forward,
+          ),
+        ],
+      ),
     );
   }
 }
